@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marokánky – malá poctivá výrobna</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      background: #ffffff;
+      color: #000000;
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: #000000;
+      text-decoration: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .border-bottom {
+      border-bottom: 1px solid #000000;
+    }
+
+    header {
+      padding: 24px 0;
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo-box {
+      width: 82px;
+      height: 82px;
+      border: 1px solid #000000;
+      padding: 4px;
+      background: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .brand-title {
+      font-size: 32px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .brand-subtitle {
+      font-size: 14px;
+      font-style: italic;
+      margin-top: 6px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 32px;
+    }
+
+    nav a {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 13px;
+    }
+
+    .hero,
+    .about,
+    .offer,
+    .production,
+    .contact {
+      padding: 80px 0;
+    }
+
+    .hero-grid,
+    .production-grid,
+    .contact-grid,
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .section-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: 72px;
+      line-height: 1.05;
+      text-transform: uppercase;
+      font-weight: normal;
+    }
+
+    h2 {
+      font-size: 46px;
+      line-height: 1.15;
+      text-transform: uppercase;
+      font-weight: normal;
+    }
+
+    h3 {
+      font-size: 28px;
+      line-height: 1.2;
+      text-transform: uppercase;
+      font-weight: normal;
+    }
+
+    .hero p,
+    .about p,
+    .offer p,
+    .production p,
+    .contact p {
+      font-size: 19px;
+      line-height: 1.8;
+    }
+
+    .hero-text p {
+      max-width: 620px;
+      margin-top: 32px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 36px;
+    }
+
+    .button {
+      display: inline-block;
+      border: 1px solid #000000;
+      padding: 14px 24px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 13px;
+    }
+
+    .button:hover {
+      background: #000000;
+      color: #ffffff;
+    }
+
+    .hero-visual {
+      border: 1px solid #000000;
+      padding: 32px;
+      background: #ffffff;
+    }
+
+    .hero-visual-inner {
+      position: relative;
+      border: 1px solid #000000;
+      min-height: 560px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 24px;
+    }
+
+    .hero-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .hero-caption {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-top: 1px solid #000000;
+      background: rgba(255, 255, 255, 0.96);
+      padding: 20px;
+    }
+
+    .hero-caption-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.32em;
+      margin-bottom: 8px;
+    }
+
+    .about-grid {
+      grid-template-columns: 240px 1fr;
+      align-items: start;
+    }
+
+    .about-text p + p {
+      margin-top: 24px;
+    }
+
+    .offer-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+
+    .offer-note {
+      max-width: 420px;
+      text-align: right;
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .card {
+      border: 1px solid #000000;
+      padding: 32px;
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      margin-bottom: 16px;
+    }
+
+    .card p {
+      margin-top: 24px;
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    .card-link {
+      margin-top: 28px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 13px;
+      text-decoration: underline;
+    }
+
+    .production-steps .step {
+      border-top: 1px solid #000000;
+      padding-top: 24px;
+      margin-bottom: 28px;
+    }
+
+    .step-title {
+      font-size: 22px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .contact-box {
+      border: 1px solid #000000;
+      padding: 32px;
+    }
+
+    .contact-item + .contact-item {
+      margin-top: 24px;
+    }
+
+    .contact-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      margin-bottom: 6px;
+    }
+
+    footer {
+      border-top: 1px solid #000000;
+      padding: 24px 0;
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .header-inner,
+      .hero-grid,
+      .production-grid,
+      .contact-grid,
+      .about-grid,
+      .cards,
+      .offer-head {
+        grid-template-columns: 1fr;
+        display: grid;
+      }
+
+      .header-inner {
+        display: block;
+      }
+
+      .brand {
+        margin-bottom: 24px;
+      }
+
+      nav ul {
+        flex-wrap: wrap;
+        gap: 16px 24px;
+      }
+
+      h1 {
+        font-size: 48px;
+      }
+
+      h2 {
+        font-size: 34px;
+      }
+
+      .offer-note {
+        text-align: left;
+        max-width: none;
+      }
+
+      .hero-visual-inner {
+        min-height: 420px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 0 20px;
+      }
+
+      .hero,
+      .about,
+      .offer,
+      .production,
+      .contact {
+        padding: 56px 0;
+      }
+
+      .brand-title {
+        font-size: 24px;
+      }
+
+      h1 {
+        font-size: 38px;
+      }
+
+      .hero p,
+      .about p,
+      .offer p,
+      .production p,
+      .contact p {
+        font-size: 17px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="border-bottom">
+    <header class="container">
+      <div class="header-inner">
+        <div class="brand">
+          <div class="logo-box">
+            <img src="cekobiko.png" alt="Logo Čeko Bíko" />
+          </div>
+          <div>
+            <div class="brand-title">Marokánky</div>
+            <div class="brand-subtitle">malá poctivá výrobna</div>
+          </div>
+        </div>
+
+        <nav>
+          <ul>
+            <li><a href="#o-nas">O nás</a></li>
+            <li><a href="#nabidka">Nabídka</a></li>
+            <li><a href="#vyroba">Výroba</a></li>
+            <li><a href="#kontakt">Kontakt</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+  </div>
+
+  <main>
+    <section class="hero border-bottom">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <div class="section-label">Tradiční receptura • Ruční výroba</div>
+          <h1>Křehké marokánky<br />z malé výrobny</h1>
+          <p>
+            Vyrábíme marokánky s důrazem na poctivé suroviny, jemnou strukturu
+            a výraznou chuť. Každá várka vzniká v malém množství a s pečlivostí,
+            kterou je na výsledku poznat.
+          </p>
+          <div class="buttons">
+            <a class="button" href="#nabidka">Zobrazit nabídku</a>
+            <a class="button" href="#kontakt">Kontakt</a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-visual-inner">
+            <img src="cekobiko.png" alt="Logo Čeko Bíko" />
+ <!--           <div class="hero-caption">
+              <div class="hero-caption-title">Logo jako dominantní prvek</div>
+              <p>
+                Značka je přímo součástí úvodní kompozice a podporuje černobílý,
+                patkový a tradiční charakter webu.
+              </p>-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="o-nas" class="about border-bottom">
+      <div class="container about-grid">
+        <div>
+          <div class="section-label">O výrobně</div>
+        </div>
+        <div class="about-text">
+          <p>
+            Naše malá výrobna se soustředí výhradně na marokánky. Nehoníme široký
+            sortiment, ale kvalitu jednoho produktu, který chceme dělat opravdu dobře.
+          </p>
+          <p>
+            Web staví na jednoduchosti: velké plochy, silná serifová typografie,
+            jemné linky a černobílý kontrast. Díky tomu působí značka tradičně,
+            důvěryhodně a prémiově.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="nabidka" class="offer border-bottom">
+      <div class="container">
+        <div class="offer-head">
+          <div>
+            <div class="section-label">Nabídka</div>
+            <h2>Vybrané produkty</h2>
+          </div>
+          <div class="offer-note">
+            Přehled sortimentu v čisté katalogové podobě.
+          </div>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div>
+              <div class="card-label">Produkt</div>
+              <h3>Klasické marokánky</h3>
+              <p>Tradiční receptura, jemně karamelizovaná chuť a křehká struktura.</p>
+            </div>
+            <a class="card-link" href="#kontakt">Poptat</a>
+          </article>
+
+          <article class="card">
+            <div>
+              <div class="card-label">Produkt</div>
+              <h3>Marokánky s hořkou čokoládou</h3>
+              <p>Výraznější zakončení a elegantní chuťový kontrast.</p>
+            </div>
+            <a class="card-link" href="#kontakt">Poptat</a>
+          </article>
+
+          <article class="card">
+            <div>
+              <div class="card-label">Produkt</div>
+              <h3>Dárkové balení</h3>
+              <p>Reprezentativní balení vhodné pro firmy i slavnostní příležitosti.</p>
+            </div>
+            <a class="card-link" href="#kontakt">Poptat</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="vyroba" class="production border-bottom">
+      <div class="container production-grid">
+        <div>
+          <div class="section-label">Jak pracujeme</div>
+          <h2>Malá výroba,<br />velká pečlivost</h2>
+        </div>
+
+        <div class="production-steps">
+          <div class="step">
+            <div class="step-title">01 • Suroviny</div>
+            <p>Výběr kvalitních vstupů bez zbytečných kompromisů.</p>
+          </div>
+          <div class="step">
+            <div class="step-title">02 • Ruční příprava</div>
+            <p>Každá várka prochází pečlivou přípravou v menším objemu.</p>
+          </div>
+          <div class="step">
+            <div class="step-title">03 • Balení</div>
+            <p>Jednoduché, čisté a reprezentativní provedení v duchu celé značky.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="kontakt" class="contact">
+      <div class="container contact-grid">
+        <div>
+          <div class="section-label">Kontakt</div>
+          <h2>Ozvěte se nám</h2>
+          <p style="margin-top: 24px; max-width: 580px;">
+            Web může sloužit jak pro přímý prodej, tak jako prezentační stránka
+            pro kavárny, obchody a firemní odběratele.
+          </p>
+        </div>
+
+        <div class="contact-box">
+          <div class="contact-item">
+            <div class="contact-label">E-mail</div>
+            <div>info@marokanky.cz</div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-label">Telefon</div>
+            <div>+420 000 000 000</div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-label">Adresa výrobny</div>
+            <div>Ukázková 12, 100 00 Praha</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      Čeko Bíko Marokánky — tradiční černobílá prezentace značky
+    </div>
+  </footer>
+</body>
+</html>
